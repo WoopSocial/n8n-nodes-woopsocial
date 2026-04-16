@@ -1,0 +1,7 @@
+node_modules/
+.agents/
+.vscode/
+CLAUDE.md
+AGENTS.md
+*.tgz
+.DS_Store
