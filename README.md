@@ -1,12 +1,9 @@
 # n8n-nodes-woopsocial
-<<<<<<< HEAD
-Our n8n integration.
-=======
 
 Use WoopSocial inside n8n to create social posts, fetch WoopSocial data, and trigger workflows from WoopSocial delivery events.
 
-[![npm version](https://img.shields.io/npm/v/n8n-nodes-woopsocial.svg)](https://www.npmjs.com/package/n8n-nodes-woopsocial)
-[![npm downloads](https://img.shields.io/npm/dm/n8n-nodes-woopsocial.svg)](https://www.npmjs.com/package/n8n-nodes-woopsocial)
+[![npm version](https://img.shields.io/npm/v/%40woopsocial%2Fn8n-nodes-woopsocial.svg)](https://www.npmjs.com/package/@woopsocial/n8n-nodes-woopsocial)
+[![npm downloads](https://img.shields.io/npm/dm/%40woopsocial%2Fn8n-nodes-woopsocial.svg)](https://www.npmjs.com/package/@woopsocial/n8n-nodes-woopsocial)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE.md)
 
 `n8n-nodes-woopsocial` is a community node that helps teams automate social publishing workflows with WoopSocial.
@@ -38,7 +35,7 @@ For trigger testing on local n8n, expose a public HTTPS URL and set `WEBHOOK_URL
 Install in your n8n environment:
 
 ```bash
-npm install n8n-nodes-woopsocial
+npm install @woopsocial/n8n-nodes-woopsocial
 ```
 
 Then restart n8n.
@@ -142,4 +139,3 @@ When fallback mode is used, the node still resolves and sends the correct accoun
 ## Changelog
 
 See [CHANGELOG.md](./CHANGELOG.md).
->>>>>>> caa032e (Initial WoopSocial n8n community node)
