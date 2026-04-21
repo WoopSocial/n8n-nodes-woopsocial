@@ -1,6 +1,6 @@
 # n8n-nodes-woopsocial
 
-Use WoopSocial inside n8n to create social posts, fetch WoopSocial data, and trigger workflows from WoopSocial delivery events.
+Post to Facebook, X/Twitter, Instagram, LinkedIn, YouTube, Pinterest and TikTok with one API key using WoopSocial inside n8n to create social posts, fetch WoopSocial data, and trigger workflows from WoopSocial delivery events without separate platform-based API keys or App IDs.
 
 [![npm version](https://img.shields.io/npm/v/%40woopsocial%2Fn8n-nodes-woopsocial.svg)](https://www.npmjs.com/package/@woopsocial/n8n-nodes-woopsocial)
 [![npm downloads](https://img.shields.io/npm/dm/%40woopsocial%2Fn8n-nodes-woopsocial.svg)](https://www.npmjs.com/package/@woopsocial/n8n-nodes-woopsocial)
