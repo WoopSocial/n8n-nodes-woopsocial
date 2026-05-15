@@ -129,9 +129,26 @@ When fallback mode is used, the node still resolves and sends the correct accoun
 
 Releases are published to npm from GitHub Actions when a `v*` tag is pushed.
 
-1. Add repository secret **`NPM_TOKEN`**: npm granular access token with publish access to `@woopsocial/n8n-nodes-woopsocial`.
-2. Bump `version` in `package.json`, commit, push to `main`.
-3. `git tag v0.1.7 && git push origin v0.1.7`
+### 1. Create `NPM_TOKEN` (must bypass 2FA for CI)
+
+1. https://www.npmjs.com/settings/~tokens → **Generate New Token** → **Granular Access Token**
+2. Permissions: **Read and write** on `@woopsocial/n8n-nodes-woopsocial` (or the whole `@woopsocial` scope)
+3. **Enable “Bypass two-factor authentication for automation”** (required — without this, CI fails with `EOTP`)
+4. Copy the token → GitHub repo → **Settings** → **Secrets and variables** → **Actions** → secret name **`NPM_TOKEN`**
+
+### 2. npm package setting (one-time)
+
+On https://www.npmjs.com/package/@woopsocial/n8n-nodes-woopsocial → **Settings** → **Publishing access**:
+
+- Use **“Require two-factor authentication or a granular access token with bypass 2fa enabled”** (default)
+- Do **not** use **“Require two-factor authentication and disallow tokens”** (blocks CI)
+
+### 3. Release
+
+1. Bump `version` in `package.json`, commit, push to `main`
+2. `git tag v0.1.8 && git push origin v0.1.8` (use the version from `package.json`)
+
+Or **re-run** the failed GitHub Actions job after updating `NPM_TOKEN` (no new tag needed if that version is not on npm yet).
 
 The workflow publishes with npm **provenance** (required for n8n verified community nodes).
 

@@ -1,9 +1,9 @@
 {
     "name": "@woopsocial/n8n-nodes-woopsocial",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "description": "n8n community node for WoopSocial social media publishing workflows.",
     "license": "MIT",
-    "homepage": "https://github.com/woopsocial/n8n-nodes-woopsocial",
+    "homepage": "https://github.com/WoopSocial/n8n-nodes-woopsocial",
     "keywords": [
         "n8n-community-node-package"
     ],
@@ -13,7 +13,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/woopsocial/n8n-nodes-woopsocial.git"
+        "url": "git+https://github.com/WoopSocial/n8n-nodes-woopsocial.git"
     },
     "scripts": {
         "build": "n8n-node build",
