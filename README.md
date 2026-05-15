@@ -125,6 +125,16 @@ When fallback mode is used, the node still resolves and sends the correct accoun
 - TypeScript implementation with no runtime dependencies.
 - For development/build, Node.js 22+ is recommended.
 
+## Publishing (maintainers)
+
+Releases are published to npm from GitHub Actions when a `v*` tag is pushed.
+
+1. Add repository secret **`NPM_TOKEN`**: npm granular access token with publish access to `@woopsocial/n8n-nodes-woopsocial`.
+2. Bump `version` in `package.json`, commit, push to `main`.
+3. `git tag v0.1.7 && git push origin v0.1.7`
+
+The workflow publishes with npm **provenance** (required for n8n verified community nodes).
+
 ## Resources
 
 - [WoopSocial](https://www.woopsocial.com/)
