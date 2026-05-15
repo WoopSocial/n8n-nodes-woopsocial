@@ -1,17 +1,24 @@
 name: Publish Package
 
+# Trigger: push a version tag, e.g. git tag v0.1.6 && git push origin v0.1.6
+#
+# Auth: npm Trusted Publisher (OIDC). Configure on npmjs.com → package → Settings →
+# Trusted publishing → GitHub Actions → repo woopsocial/n8n-nodes-woopsocial, workflow publish.yml
+#
+# Important: do not use actions/setup-node "registry-url" in this workflow — it injects a
+# fake NODE_AUTH_TOKEN that prevents OIDC from working.
+
 on:
   push:
     tags:
       - 'v*'
 
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
       - uses: actions/checkout@v4
@@ -19,7 +26,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24.x'
-          registry-url: 'https://registry.npmjs.org'
 
       - run: npm ci
 
@@ -27,11 +33,16 @@ jobs:
 
       - run: npm run build
 
-      - name: Publish to npm (OIDC trusted publishing)
-        run: |
-          unset NODE_AUTH_TOKEN
-          npm config delete //registry.npmjs.org/:_authToken --location=user 2>/dev/null || true
-          npm config delete //registry.npmjs.org/:_authToken --location=project 2>/dev/null || true
-          npm publish --access public
+      - name: Get OIDC token for npm
+        id: oidc
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const token = await core.getIDToken('npm:registry.npmjs.org');
+            core.setOutput('token', token);
+
+      - name: Publish to npm
+        run: npm publish --access public
         env:
           RELEASE_MODE: 'true'
+          NPM_ID_TOKEN: ${{ steps.oidc.outputs.token }}
