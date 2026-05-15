@@ -18,7 +18,8 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: '24.x'
+          registry-url: 'https://registry.npmjs.org'
 
       - run: npm ci
 
@@ -27,6 +28,10 @@ jobs:
       - run: npm run build
 
       - name: Publish to npm (OIDC trusted publishing)
-        run: npm publish --access public
+        run: |
+          unset NODE_AUTH_TOKEN
+          npm config delete //registry.npmjs.org/:_authToken --location=user 2>/dev/null || true
+          npm config delete //registry.npmjs.org/:_authToken --location=project 2>/dev/null || true
+          npm publish --access public
         env:
           RELEASE_MODE: 'true'
